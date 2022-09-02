@@ -1,5 +1,7 @@
 const path = require('path');
 
+require('dotenv').config()
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -11,8 +13,7 @@ const flash = require('connect-flash');
 const errorController = require('./controllers/error');
 const User = require('./models/user');
 
-const MONGODB_URI =
-  'mongodb+srv://dbSD:1234554321@clustersd.xtmiajb.mongodb.net/Shop';
+const MONGODB_URI = process.env.URL_DATABASE
 
 const app = express();
 const store = new MongoDBStore({
@@ -68,7 +69,9 @@ app.use(errorController.get404);
 mongoose
   .connect(MONGODB_URI)
   .then(result => {
-    app.listen(3000);
+    app.listen(process.env.PORT,()=>{
+      console.log("localhost:3000")
+    });
   })
   .catch(err => {
     console.log(err);
