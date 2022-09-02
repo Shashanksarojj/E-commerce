@@ -1,6 +1,6 @@
 const path = require('path');
 
-require('dotenv').config()
+require('dotenv').config() // require to import .env function
 
 const express = require('express');
 const bodyParser = require('body-parser');
